@@ -2,48 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>SocialGPT</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      header {
-        background-color: #333333;
-        color: #FFFFFF;
-        padding: 20px;
-        text-align: center;
-      }
-      h1 {
-        font-size: 36px;
-        margin: 0;
-      }
-      main {
-        padding: 20px;
-      }
-      p {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-      ul {
-        list-style-type: disc;
-        margin: 20px 0;
-        padding: 0 0 0 40px;
-      }
-      li {
-        font-size: 18px;
-        line-height: 1.5;
-        margin: 10px 0;
-      }
-      a {
-        color: #333333;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -66,10 +24,10 @@
         <li>React Native</li>
         <li>Expo</li>
         <li>Styled Components</li>
-        <li>React Navigation</li>
+        <li>Expo Router</li>
       </ul>
       <h2>Autor</h2>
-      <p>Este projeto foi desenvolvido por <a href="https://github.com/seunome">Seu Nome</a>.</p>
+      <p>Este projeto foi desenvolvido por <a href="https://github.com/patricklouback">Patrick Louback</a>.</p>
     </main>
   </body>
 </html>
