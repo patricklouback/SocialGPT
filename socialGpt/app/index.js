@@ -42,7 +42,7 @@ export default function Page() {
             <BtnText>Post</BtnText>
             <BtnText>Instagram</BtnText>
           </BtnType>
-          <BtnType color="#E83F5B">
+          <BtnType color="#E83F5B" onPress={()=> router.push("./screens/StoryInstagram")}>
             <BtnText>Story</BtnText>
             <BtnText>Instagram</BtnText>
           </BtnType>
