@@ -64,18 +64,18 @@ export default function Page() {
             <BtnText>Carrossel</BtnText>
             <BtnText>Instagram</BtnText>
           </BtnType>
-          <BtnType color="#5965E0">
+          <BtnType color="#5965E0" onPress={()=> router.push("./screens/TituloYouTube")}>
             <BtnText>Título</BtnText>
             <BtnText>YouTube</BtnText>
           </BtnType>
         </AreaBtn>
 
         <AreaBtn>
-          <BtnType color="#FFB347">
+          <BtnType color="#FFB347" onPress={()=> router.push("./screens/DescricaoYouTube")}>
             <BtnText color="#4A4A4A">Descrição</BtnText>
             <BtnText color="#4A4A4A">YouTube</BtnText>
           </BtnType>
-          <BtnType color="#33CC95">
+          <BtnType color="#33CC95" onPress={()=> router.push("./screens/ChamadaParaAcao")}>
             <BtnText color="#4A4A4A">Chamada</BtnText>
             <BtnText color="#4A4A4A">para Ação</BtnText>
           </BtnType>

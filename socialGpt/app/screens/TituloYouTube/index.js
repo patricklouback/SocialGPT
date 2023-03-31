@@ -32,8 +32,8 @@ export default function Page() {
       <TouchableOpacity onPress={() => router.push('../')}>
         <Ionicons name='arrow-back' size={35} color="#333333" />
       </TouchableOpacity>
-      <Title>Hashtags para Instagram</Title>
-      <Description>Digite o assunto do seu post para gerar tags:</Description>
+      <Title>Título para Vídeo</Title>
+      <Description>Digite o assunto do seu vídeo para gerar um título:</Description>
       <Input placeholder="Digite aqui..." placeholderTextColor="#3D3D3D" multiline={true} />
       <AreaBtn>
         <BtnType>
@@ -47,25 +47,20 @@ export default function Page() {
       <AreaBtn2>
         <View>
           <BtnType width="144px" color="#FFB347">
-            <BtnText color="#4A4A4A">Copiar Resposta</BtnText>
+            <BtnText color="#4A4A4A">Copiar Título</BtnText>
           </BtnType>
           <BtnType width="144px" color="#9BDBB1">
-            <BtnText color="#4A4A4A">Outra Resposta</BtnText>
+            <BtnText color="#4A4A4A">Outro Título</BtnText>
           </BtnType>
         </View>
 
-        <View>
-          <BtnType width="144px" color="#5965E0">
-            <BtnText>Salvar Resposta</BtnText>
-          </BtnType>
-          <BtnType width="144px">
-            <BtnText>Download .CSV</BtnText>
-          </BtnType>
-        </View>
+        <BtnType width="144px" height="93px" color="#5965E0">
+          <BtnText>Salvar Título</BtnText>
+        </BtnType>
       </AreaBtn2>
       <Line />
       <BtnType width="100%" color="#E83F5B">
-        <BtnText color="#FFF">Ver Pesquisas Salvas</BtnText>
+        <BtnText color="#FFF">Ver Salvos</BtnText>
       </BtnType>
 
     </Container>
