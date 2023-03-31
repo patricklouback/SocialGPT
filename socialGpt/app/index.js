@@ -38,7 +38,7 @@ export default function Page() {
       <Line />
       <Body>
         <AreaBtn>
-          <BtnType>
+          <BtnType onPress={()=> router.push("./screens/PostInstagram")}>
             <BtnText>Post</BtnText>
             <BtnText>Instagram</BtnText>
           </BtnType>

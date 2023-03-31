@@ -56,13 +56,13 @@ export default function Page() {
         </View>
 
         <BtnType width="144px" height="93px" color="#5965E0">
-          <BtnText color="#FFF">Outra Resposta</BtnText>
+          <BtnText color="#FFF">Salvar Resposta</BtnText>
         </BtnType>
       </AreaBtn2>
 
       <Line />
       <BtnType width="100%" color="#E83F5B">
-        <BtnText color="#FFF">Ver Respostas Salvas</BtnText>
+        <BtnText color="#FFF">Ver Pesquisas Salvas</BtnText>
       </BtnType>
     </Container>
   );
