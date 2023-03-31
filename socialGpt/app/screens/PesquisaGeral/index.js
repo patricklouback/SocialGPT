@@ -5,10 +5,12 @@ import { TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AreaBtn, AreaBtn2, AreaResp, AreaTitleIcon, Body, BtnText, BtnType, Container, Description, Input, Line, Resp, Title } from "../styles"
 
+const CHAT_GPD_API_KEY = process.env.CHAT_GPD_API_KEY;
 
 export default function Page() {
-  const router = useRouter();
 
+  const router = useRouter();
+  const [resposta,setResposta] = useState('Resp')
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,13 +38,13 @@ export default function Page() {
       <Line />
       <Input placeholder="Digite aqui..." placeholderTextColor="#3D3D3D" multiline={true} />
       <AreaBtn>
-        <BtnType>
+        <BtnType onPress={() => setResposta(CHAT_GPD_API_KEY)}>
           <BtnText>Pesquisar</BtnText>
         </BtnType>
       </AreaBtn>
       <Line />
       <AreaResp>
-        <Resp>-- Resposta --</Resp>
+        <Resp>-- {resposta} --</Resp>
       </AreaResp>
 
       <AreaBtn2>
