@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
+import {useRouter} from 'expo-router'
 import { TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AreaBtn, AreaTitleIcon, Body, BtnText, BtnType, Container, Description, Line, Title } from "./styles"
 
 
 export default function Page() {
+  const router = useRouter();
+
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -79,7 +82,7 @@ export default function Page() {
         </AreaBtn>
 
         <AreaBtn>
-          <BtnType width="330px">
+          <BtnType onPress={()=> router.push("./screens/PesquisaGeral")} width="330px">
             <BtnText>Pesquisa Geral</BtnText>
           </BtnType>
         </AreaBtn>
