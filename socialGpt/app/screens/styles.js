@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.View`
     flex: 1;
-    padding: 70px 23px;
+    padding: 62px 23px;
     background: #DDDDDD;
 `;
 
@@ -46,8 +46,8 @@ export const AreaBtn = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-end;
-    margin-bottom: 5px;
+    align-items: center;
+    margin: 3px 0px;
 `;
 
 export const AreaBtn2 = styled.View`

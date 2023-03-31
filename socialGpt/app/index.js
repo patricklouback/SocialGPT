@@ -49,18 +49,18 @@ export default function Page() {
         </AreaBtn>
 
         <AreaBtn>
-          <BtnType color="#9BDBB1">
+          <BtnType color="#9BDBB1" onPress={()=> router.push("./screens/HashtagsInstagram")}>
             <BtnText color="#4A4A4A">Hashtags</BtnText>
             <BtnText color="#4A4A4A">Instagram</BtnText>
           </BtnType>
-          <BtnType color="#FFBB43">
+          <BtnType color="#FFBB43" onPress={()=> router.push("./screens/LegendaInstagram")}>
             <BtnText color="#4A4A4A">Legenda</BtnText>
             <BtnText color="#4A4A4A">Instagram</BtnText>
           </BtnType>
         </AreaBtn>
 
         <AreaBtn>
-          <BtnType color="#D946EF">
+          <BtnType color="#D946EF" onPress={()=> router.push("./screens/CarrosselInstagram")}>
             <BtnText>Carrossel</BtnText>
             <BtnText>Instagram</BtnText>
           </BtnType>
