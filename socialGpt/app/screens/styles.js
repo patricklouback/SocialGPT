@@ -1,4 +1,4 @@
-import { Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Text, TextInput, View, TouchableOpacity,ScrollView  } from "react-native";
 import styled from "styled-components";
 
 export const Container = styled.View`
