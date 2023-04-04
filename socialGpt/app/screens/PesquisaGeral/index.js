@@ -16,8 +16,10 @@ export default function Page() {
   const [prompt, setPrompt] = useState('');
   const [text, setText] = useState('');
   const [resposta, setResposta] = useState('Resposta');
+  const [respostaInicial, setRespostaInicial] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [firstRequest, setFirstRequest] = useState(true);
 
   useEffect(() => {
     async function loadFonts() {
@@ -41,10 +43,10 @@ export default function Page() {
 
     ChatGpt(prompt)
       .then(resposta => {
-        setResposta(resposta);
+        setResposta(prompt + " => " + resposta);
         console.log(resposta);
       })
-      .finally(() => setLoading(false));
+    .finally(() => setLoading(false));
   }
 
   function outraResposta() {
