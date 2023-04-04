@@ -16,10 +16,8 @@ export default function Page() {
   const [prompt, setPrompt] = useState('');
   const [text, setText] = useState('');
   const [resposta, setResposta] = useState('Resposta');
-  const [respostaInicial, setRespostaInicial] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [firstRequest, setFirstRequest] = useState(true);
 
   useEffect(() => {
     async function loadFonts() {
@@ -32,6 +30,18 @@ export default function Page() {
     loadFonts();
   }, []);
 
+  useEffect(() => {
+    if (prompt != '') {
+      setLoading(true);
+      ChatGpt(prompt)
+        .then(resposta => {
+          setResposta("Você:\n" + prompt + "\n\n Resposta: " + resposta);
+          console.log(resposta);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [prompt]);
+
   if (!fontLoaded) {
     return null;
   }
@@ -40,26 +50,12 @@ export default function Page() {
     setLoading(true)
     setPrompt(text);
     setText('');
-
-    ChatGpt(prompt)
-      .then(resposta => {
-        setResposta(prompt + " => " + resposta);
-        console.log(resposta);
-      })
-    .finally(() => setLoading(false));
   }
 
   function outraResposta() {
     setLoading(true)
-    setPrompt(prompt + " quero uma resposta diferente");
+    setPrompt(prompt + " outro(a)");
     setText('');
-
-    ChatGpt(prompt)
-      .then(resposta => {
-        setResposta(resposta);
-        console.log(resposta);
-      })
-      .finally(() => setLoading(false));
   }
 
   const copyToClipboard = async () => {
