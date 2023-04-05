@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import { useRouter } from 'expo-router'
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, ActivityIndicator, ScrollView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
-import Checkbox from 'expo-checkbox';
+import Checkbox from 'expo-checkbox'
 import { AreaBtn, AreaBtn2, AreaResp, AreaTitleIcon, Body, BtnText, BtnType, Container, Description, Input, Line, Resp, Title } from "../styles"
-
+import { ChatGpt } from '../../../utils/gpt';
+import * as Clipboard from 'expo-clipboard';
 
 export default function Page() {
   const router = useRouter();
 
+  const [prompt, setPrompt] = useState('');
+  const [text, setText] = useState('');
+  const [resposta, setResposta] = useState('Resposta');
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(1);
   const [isChecked, setChecked] = useState(false);
 
   const options = [
@@ -36,9 +41,43 @@ export default function Page() {
     loadFonts();
   }, []);
 
+  useEffect(() => {
+    if (prompt != '') {
+      setLoading(true);
+      ChatGpt(prompt)
+        .then(resposta => {
+          setResposta("Você:\n" + prompt + "\n\n Resposta: " + resposta);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [prompt]);
+
   if (!fontLoaded) {
     return null;
   }
+
+  function pesquisar() {
+    setLoading(true)
+
+    if (isChecked) {
+      setPrompt("Crie um Post tipo Carrossel de imagens com " + selectedOption + " páginas com título e corpo em cada página, falando sobre " + text);
+    } else {
+      setPrompt("Crie um Post tipo Carrossel de imagens com " + selectedOption + " páginas sem título somente com corpo em cada página, falando sobre " + text);
+    }
+    setText('');
+  }
+
+  function outraResposta() {
+    setLoading(true)
+    if (prompt != '') {
+      setPrompt(prompt + " outro(a)");
+      setText('');
+    }
+  }
+
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(resposta);
+  };
 
   return (
     <Container>
@@ -70,22 +109,36 @@ export default function Page() {
         />
         <BtnText color="#3D3D3D">Com Título nas Páginas</BtnText>
       </AreaBtn>
-      <Input placeholder="Digite aqui o assunto..." placeholderTextColor="#3D3D3D" multiline={true} />
+      <Input
+        value={text}
+        onChangeText={setText}
+        placeholder="Descreva o assunto do seu Post Carrossel."
+        placeholderTextColor="#3D3D3D"
+        multiline={true} />
       <AreaBtn>
-        <BtnType>
-          <BtnText>Pesquisar</BtnText>
+        <BtnType
+          onPress={pesquisar}
+          disabled={loading}>
+          {loading && <ActivityIndicator size="large" color="#DDD" />}
+          {!loading && <BtnText>Pesquisar</BtnText>}
         </BtnType>
       </AreaBtn>
       <Line />
       <AreaResp>
-        <Resp>-- Resposta --</Resp>
+        <ScrollView>
+          <Resp>{resposta}</Resp>
+        </ScrollView>
       </AreaResp>
       <AreaBtn2>
         <View>
-          <BtnType width="144px" color="#FFB347">
+          <BtnType onPress={copyToClipboard} width="144px" color="#FFB347">
             <BtnText color="#4A4A4A">Copiar Resposta</BtnText>
           </BtnType>
-          <BtnType width="144px" color="#9BDBB1">
+          <BtnType
+            disabled={loading}
+            onPress={outraResposta}
+            width="144px"
+            color="#9BDBB1">
             <BtnText color="#4A4A4A">Outra Resposta</BtnText>
           </BtnType>
         </View>

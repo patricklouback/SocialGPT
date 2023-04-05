@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import { useRouter } from 'expo-router'
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, ActivityIndicator, ScrollView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Picker } from '@react-native-picker/picker';
 import { AreaBtn, AreaBtn2, AreaResp, AreaTitleIcon, Body, BtnText, BtnType, Container, Description, Input, Line, Resp, Title } from "../styles"
-
+import { ChatGpt } from '../../../utils/gpt';
+import * as Clipboard from 'expo-clipboard';
 
 export default function Page() {
   const router = useRouter();
 
+  const [prompt, setPrompt] = useState('');
+  const [text, setText] = useState('');
+  const [resposta, setResposta] = useState('Resposta');
   const [fontLoaded, setFontLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -23,9 +29,38 @@ export default function Page() {
     loadFonts();
   }, []);
 
+  useEffect(() => {
+    if (prompt != '') {
+      setLoading(true);
+      ChatGpt(prompt)
+        .then(resposta => {
+          setResposta("Você:\n" + prompt + "\n\n Resposta: " + resposta);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [prompt]);
+
   if (!fontLoaded) {
     return null;
   }
+
+  function pesquisar() {
+    setLoading(true)
+    setPrompt("Crie uma chamada para ação, clique na bio ou entrar em contato sobre o produto " + text);
+    setText('');
+  }
+
+  function outraResposta() {
+    setLoading(true)
+    if (prompt != '') {
+      setPrompt(prompt + " outro(a)");
+      setText('');
+    }
+  }
+
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(resposta);
+  };
 
   return (
     <Container>
@@ -34,29 +69,48 @@ export default function Page() {
       </TouchableOpacity>
       <Title>Chamada para Ação</Title>
       <Description>Digite o assunto para criar o texto:</Description>
-      <Input placeholder="Digite aqui..." placeholderTextColor="#3D3D3D" multiline={true} />
+      <Input
+        value={text}
+        onChangeText={setText}
+        placeholder="Digite o assunto do vídeo..."
+        placeholderTextColor="#3D3D3D"
+        multiline={true} />
       <AreaBtn>
-        <BtnType>
-          <BtnText>Pesquisar</BtnText>
+        <BtnType
+          onPress={pesquisar}
+          disabled={loading}>
+          {loading && <ActivityIndicator size="large" color="#DDD" />}
+          {!loading && <BtnText>Pesquisar</BtnText>}
         </BtnType>
       </AreaBtn>
       <Line />
       <AreaResp>
-        <Resp>-- Resposta --</Resp>
+        <ScrollView>
+          <Resp>{resposta}</Resp>
+        </ScrollView>
       </AreaResp>
       <AreaBtn2>
         <View>
-          <BtnType width="144px" color="#FFB347">
-            <BtnText color="#4A4A4A">Copiar Texto</BtnText>
+          <BtnType onPress={copyToClipboard} width="144px" color="#FFB347">
+            <BtnText color="#4A4A4A">Copiar Resposta</BtnText>
           </BtnType>
-          <BtnType width="144px" color="#9BDBB1">
-            <BtnText color="#4A4A4A">Outro Texto</BtnText>
+          <BtnType
+            disabled={loading}
+            onPress={outraResposta}
+            width="144px"
+            color="#9BDBB1">
+            <BtnText color="#4A4A4A">Outra Resposta</BtnText>
           </BtnType>
         </View>
 
-        <BtnType width="144px" height="93px" color="#5965E0">
-          <BtnText>Salvar Texto</BtnText>
-        </BtnType>
+        <View>
+          <BtnType width="144px" color="#5965E0">
+            <BtnText>Salvar Resposta</BtnText>
+          </BtnType>
+          <BtnType width="144px">
+            <BtnText>Download .CSV</BtnText>
+          </BtnType>
+        </View>
       </AreaBtn2>
       <Line />
       <BtnType width="100%" color="#E83F5B">
