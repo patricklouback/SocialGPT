@@ -46,7 +46,7 @@ export default function Page() {
       ChatGpt(prompt)
         .then(resposta => {
           setResposta("Você:\n" + prompt + "\n\n Resposta: " + resposta);
-          console.log(resposta);
+
         })
         .finally(() => setLoading(false));
     }
@@ -58,7 +58,7 @@ export default function Page() {
 
   function pesquisar() {
     setLoading(true)
-    setPrompt("Me dê 5 ideias de post de " + selectedOption + " para o instagram falando sobre: " + text);
+    setPrompt("Me dê 5 ideias de post de " + selectedOption + " para o Instagram, falando sobre " + text);
     setText('');
   }
 
@@ -109,7 +109,6 @@ export default function Page() {
           disabled={loading}>
           {loading && <ActivityIndicator size="large" color="#DDD" />}
           {!loading && <BtnText>Pesquisar</BtnText>}
-
         </BtnType>
       </AreaBtn>
       <Line />

@@ -36,7 +36,6 @@ export default function Page() {
       ChatGpt(prompt)
         .then(resposta => {
           setResposta("Você:\n" + prompt + "\n\n Resposta: " + resposta);
-          console.log(resposta);
         })
         .finally(() => setLoading(false));
     }
