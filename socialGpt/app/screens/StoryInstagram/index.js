@@ -120,32 +120,19 @@ export default function Page() {
         </ScrollView>
       </AreaResp>
       <AreaBtn2>
-        <View>
-          <BtnType onPress={copyToClipboard} width="144px" color="#FFB347">
-            <BtnText color="#4A4A4A">Copiar Resposta</BtnText>
-          </BtnType>
-          <BtnType
-            disabled={loading}
-            onPress={outraResposta}
-            width="144px"
-            color="#9BDBB1">
-            <BtnText color="#4A4A4A">Outra Resposta</BtnText>
-          </BtnType>
-        </View>
-
-        <View>
-          <BtnType width="144px" color="#5965E0">
-            <BtnText>Salvar Resposta</BtnText>
-          </BtnType>
-          <BtnType width="144px">
-            <BtnText>Download .CSV</BtnText>
-          </BtnType>
-        </View>
+        <BtnType onPress={copyToClipboard} width="54px" color="#FFB347">
+          <Ionicons name='copy' size={35} color="#333333" />
+        </BtnType>
+        <BtnType
+          disabled={loading}
+          onPress={outraResposta}
+          width="54px"
+          color="#9BDBB1">
+          <Ionicons name='refresh-circle' size={35} color="#333333" />
+        </BtnType>
       </AreaBtn2>
+
       <Line />
-      <BtnType width="100%" color="#E83F5B">
-        <BtnText color="#FFF">Ver Pesquisas Salvas</BtnText>
-      </BtnType>
 
     </Container>
   );

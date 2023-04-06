@@ -14,6 +14,7 @@ export const Title = styled.Text`
     font-size: 32px;
     line-height: 58px;
     color: #333333;
+    margin-top: 15px;
 `;
 
 export const Description = styled.Text`
@@ -30,7 +31,7 @@ export const Description = styled.Text`
 
 export const Line = styled.View`
     border: 1px solid #B5B5B5;
-    margin: 5px 0px;
+    margin: 10px 0px;
 `;
 
 export const Input = styled.TextInput`
@@ -55,7 +56,7 @@ export const AreaBtn2 = styled.View`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 5px;
+    margin: 15px 0px;
 `;
 
 export const BtnType = styled.TouchableOpacity`
