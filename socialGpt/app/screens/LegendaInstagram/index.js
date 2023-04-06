@@ -74,7 +74,7 @@ export default function Page() {
       <TouchableOpacity onPress={() => router.push('../')}>
         <Ionicons name='arrow-back' size={35} color="#333333" />
       </TouchableOpacity>
-      <Title>Legenda para o Instagram</Title>
+      <Title>Legenda para um Post</Title>
       <Description>Defina uma Categoria para a legenda:</Description>
       <Picker
         style={{ backgroundColor: "#5965E0", color: "#FFF" }}
