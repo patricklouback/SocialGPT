@@ -11,7 +11,7 @@ export default function Page() {
   const router = useRouter();
 
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     async function loadFonts() {
@@ -31,14 +31,14 @@ export default function Page() {
     <Container>
       <AreaTitleIcon>
         <Title>SocialGPT</Title>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{setModalVisible(true)}}>
           <Ionicons name='information-circle' size={35} color="#333333" />
         </TouchableOpacity>
       </AreaTitleIcon>
       <Description>Selecione o tipo de conteúdo:</Description>
       <Line />
 
-      {modalVisible && <ModalComponent/>}
+      <ModalComponent modalVisible={modalVisible} fechar={() => {setModalVisible(false)}}/>
 
       <Body>
         <AreaBtn>
